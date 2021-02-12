@@ -13,4 +13,7 @@ osmconvert provence-alpes-cote-d-azur-latest.osm_01.pbf --out-osm -o=provence-al
 
 
 
-osm2pgrouting.exe --clean -f "D:\MasterGeoNum\M2\Projet_geonumerique\Pgrouting\provence-alpes-cote-d-azur-latest_01_01.osm" -d PGroutingTest -p 5432 -h localhost -W 010891 -U postgres -c "C:\Program Files\PostgreSQL\13\bin\mapconfig.xml"
+osm2pgrouting.exe --clean -f "D:\MasterGeoNum\M2\Projet_geonumerique\Pgrouting\provence-alpes-cote-d-azur-latest.osm3_01_01.osm" -d PGroutingTest2 -p 5432 -h localhost -W 010891 -U postgres -c "C:\Program Files\PostgreSQL\13\bin\mapconfig.xml"
+
+
+osmconvert provence-alpes-cote-d-azur-latest.osm_01_01.osm -b=6.5204,43.4669,7.7454,44.3847 --complete-ways --out-osm -o=provence-alpes-cote-d-azur-latest.osm_01_01_01.osm
