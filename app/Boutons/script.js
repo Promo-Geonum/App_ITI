@@ -4,17 +4,38 @@ var saisons = ['Été', 'Hiver', 'Toutes saisons', 'Printemps', 'Été indien']
 var milieux = ['Montagne', 'Mer', 'Urbain']
 var sports = ['Natation', 'VTT', 'Boules', 'Ski', 'Randonnée', 'Sports nautiques', 'Terrains extérieurs', 'Parcours sportifs', 'Équitation', 'Golf', 'Skate park', 'Sports de glace']
 
+url = 'http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3Asaisons&maxFeatures=50&outputFormat=application%2Fjson'
+
 let user_saison
 let user_milieu
 let user_sport
 
 //Construction des boutons saisons : une div bouton est créée pour chaque élément de la liste saisons, avec fonction onclick et remplissage du HTML
 var htmlSaisons = "";
-for (var i = 0; i < saisons.length; i++) {
+
+function saison_fun(){
+	function getJson(data) {
+		for (var i = 0; i < data.features.length; i++) {
+			htmlSaisons += '<div role="button" id="saison' + i + '" onclick="clickbutton(\'saison' + i + '\')">' + data.features[i].properties['saison'] +'</div>';
+		}
+		var container_saisons = document.getElementById("container_saisons");
+		container_saisons.innerHTML = htmlSaisons;
+        //console.log(saison);
+    }
+    $.ajax({
+        type: 'GET', 
+        url: url,
+        dataType: 'JSON',
+        success: getJson
+    });
+}
+saison_fun()
+
+/*for (var i = 0; i < saisons.length; i++) {
    htmlSaisons += '<div role="button" id="saison' + i + '" onclick="clickbutton(\'saison' + i + '\')">' + saisons[i] +'</div>';
 }
 var container_saisons = document.getElementById("container_saisons");
-container_saisons.innerHTML = htmlSaisons;
+container_saisons.innerHTML = htmlSaisons;*/
 
 
 //Construction des boutons milieux : une div bouton est créée pour chaque élément de la liste saisons, avec fonction onclick et remplissage du HTML
