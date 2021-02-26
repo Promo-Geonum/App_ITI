@@ -1,0 +1,18 @@
+div[role="button"] {
+	border-style: solid;
+	display: inline-block;
+  	margin-bottom: 0;
+  	text-align: center;
+  	text-transform: uppercase;
+  	vertical-align: middle;
+ 	cursor: pointer;
+ 	background-image: none;
+ 	padding: 6px 12px;
+ 	font-size: 1.4rem;
+ 	border-radius: 3px;
+}
+
+div[class="container"] {
+	margin-top: 5px;
+}
+
