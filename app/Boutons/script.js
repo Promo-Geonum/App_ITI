@@ -1,8 +1,8 @@
 //Déclaration variables (les listes sont provisoires et ont vocation à être remplacées par les requêtes SQL
 //ainsi le nombre de boutons sera corrélé aux sélections spatiales successives
-var saisons = ['Été', 'Hiver', 'Toutes saisons', 'Printemps', 'Été indien']
+/*var saisons = ['Été', 'Hiver', 'Toutes saisons', 'Printemps', 'Été indien']
 var milieux = ['Montagne', 'Mer', 'Urbain']
-var sports = ['Natation', 'VTT', 'Boules', 'Ski', 'Randonnée', 'Sports nautiques', 'Terrains extérieurs', 'Parcours sportifs', 'Équitation', 'Golf', 'Skate park', 'Sports de glace']
+var sports = ['Natation', 'VTT', 'Boules', 'Ski', 'Randonnée', 'Sports nautiques', 'Terrains extérieurs', 'Parcours sportifs', 'Équitation', 'Golf', 'Skate park', 'Sports de glace']*/
 
 url = 'http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3Asaisons&maxFeatures=50&outputFormat=application%2Fjson'
 
@@ -40,19 +40,59 @@ container_saisons.innerHTML = htmlSaisons;*/
 
 //Construction des boutons milieux : une div bouton est créée pour chaque élément de la liste saisons, avec fonction onclick et remplissage du HTML
 var htmlMilieux = "";
+
+function milieu_fun(){
+	function getJson(data) {
+		for (var i = 0; i < data.features.length; i++) {
+			htmlMilieux += '<div role="button" id="milieu' + i + '" onclick="clickbutton(\'milieu' + i + '\')">' + data.features[i].properties['milieu'] +'</div>';
+		}
+		var container_milieux = document.getElementById("container_milieux");
+		container_milieux.innerHTML = htmlMilieux;
+        //console.log(milieu);
+    }
+    $.ajax({
+        type: 'GET', 
+        url: url,
+        dataType: 'JSON',
+        success: getJson
+    });
+}
+milieu_fun()
+
+/*var htmlMilieux = "";
 for (var i = 0; i < milieux.length; i++) {
    htmlMilieux += '<div role="button" id="milieu' + i + '" onclick="clickbutton(\'milieu' + i + '\')">' + milieux[i] +'</div>';
 }
 var container_milieux = document.getElementById("container_milieux");
-container_milieux.innerHTML = htmlMilieux;
+container_milieux.innerHTML = htmlMilieux;*/
 
 //Construction des boutons sports : une div bouton est créée pour chaque élément de la liste saisons, avec fonction onclick et remplissage du HTML
 var htmlSports = "";
+
+function sport_fun(){
+	function getJson(data) {
+		for (var i = 0; i < data.features.length; i++) {
+			htmlSports += '<div role="button" id="sport' + i + '" onclick="clickbutton(\'sport' + i + '\')">' + data.features[i].properties['sport'] +'</div>';
+		}
+		var container_sports = document.getElementById("container_sports");
+		container_sports.innerHTML = htmlSports;
+        //console.log(sport);
+    }
+    $.ajax({
+        type: 'GET', 
+        url: url,
+        dataType: 'JSON',
+        success: getJson
+    });
+}
+sport_fun()
+
+/*var htmlSports = "";
 for (var i = 0; i < sports.length; i++) {
    htmlSports += '<div role="button" id="sport' + i + '" onclick="clickbutton(\'sport' + i + '\')">' + sports[i] +'</div>';
 }
 var container_sports = document.getElementById("container_sports");
-container_sports.innerHTML = htmlSports;
+container_sports.innerHTML = htmlSports;*/
 
 
 //Fonction de remplissage des variables correspondant aux choix utilisateurs avec le contenu HTML du bouton cliqué
