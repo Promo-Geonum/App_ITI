@@ -1,0 +1,68 @@
+body {
+	background-color: #004519;
+}
+#logo {
+  width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+	margin-top: 100px;
+}
+
+#bouton_info {
+	text-align: right;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+#information {
+	position: relative;
+	z-index: 4;
+	background-color: #6fbc85;
+	border-color: #6fbc85;
+	border-radius: 90px;
+	width: 40px;
+	height: 40px;
+	font-family: monospace;
+	font-size: 30px;
+	color: #004519;
+	font-weight: bold;
+	text-align: center;
+}
+
+#bloc_text_info {
+	position: relative;
+	text-align: right;
+	z-index: 3;
+	margin-left: auto;
+	margin-top: auto;
+	width: 30%;
+	height: 30%;
+	background-color: #6fbc85;
+	border-radius: 20px;
+}
+
+#info_text {
+	text-align: center;
+	color: #004519;
+}
+
+#BoutonDemarrer {
+	text-align: center;
+	margin-top: 10px;
+}
+#Demmarrer {
+	background-color: #6fbc85;
+	border-color: #6fbc85;
+	border-radius: 50px;
+	width: 300px;
+	height: 50px;
+	font-size: 35px;
+	font-weight: bold;
+	text-align: center;
+	color: #004519;
+}
+
+#Demmarrer:hover {
+    background-color: #4da562;
+}
