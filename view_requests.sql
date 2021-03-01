@@ -1,4 +1,4 @@
-noeud
+--reqête de noeud
 SELECT
   v.id,
   v.the_geom,
@@ -14,7 +14,7 @@ WHERE
   AND (e.source = v.id OR e.target = v.id)
 GROUP BY v.id, v.the_geom
 
-path
+--reqête de chemin
 SELECT
 	MIN(a.seq) AS seq,  
         sum(b.length_m) AS distance,
