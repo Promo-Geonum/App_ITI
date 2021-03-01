@@ -1,113 +1,69 @@
 //Déclaration variables (les listes sont provisoires et ont vocation à être remplacées par les requêtes SQL
 //ainsi le nombre de boutons sera corrélé aux sélections spatiales successives
-/*var saisons = ['Été', 'Hiver', 'Toutes saisons', 'Printemps', 'Été indien']
-var milieux = ['Montagne', 'Mer', 'Urbain']
-var sports = ['Natation', 'VTT', 'Boules', 'Ski', 'Randonnée', 'Sports nautiques', 'Terrains extérieurs', 'Parcours sportifs', 'Équitation', 'Golf', 'Skate park', 'Sports de glace']*/
 
-url = 'http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3Asaisons&maxFeatures=50&outputFormat=application%2Fjson'
+url1 = 'http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3A'
+url2 = '&maxFeatures=50&outputFormat=application%2Fjson'
+params = '&viewparams=saison_code:'
 
 let user_saison
 let user_milieu
 let user_sport
 
-//Construction des boutons saisons : une div bouton est créée pour chaque élément de la liste saisons, avec fonction onclick et remplissage du HTML
-var htmlSaisons = "";
+//Fonction de construction de l'url pour les requêtes WFS GeoServer
+function url_fun(type) {
+	if (type == 'saison') {
+		url = url1 + type + url2
+		return url
+	} else if (type == 'milieu') {
+		url = url1 + type + url2 + params + user_saison
+		return url
+	} else if (type == 'sport') {
+		url = url1 + type + url2 + params + user_saison + ';milieu_code:' + user_milieu
+		return url
+	}
+}
 
-function saison_fun(){
+
+//Construction des boutons : une div bouton est créée pour chaque élément des features collections récupérées via GeoServer, et ajoutée au container HTML correspondant
+//Évènement onclick sur chaque div renvoyant vers la fonction clickbutton
+//les deux arguments étant la var "xxx_code" de la donnée requêtée, et l'argument de la fonction get_fun (saison, milieu ou sport)
+function get_fun(type){
 	function getJson(data) {
+		var html = ""
 		for (var i = 0; i < data.features.length; i++) {
-			htmlSaisons += '<div role="button" id="saison' + i + '" onclick="clickbutton(\'saison' + i + '\')">' + data.features[i].properties['saison'] +'</div>';
+			html += '<div role="button" onclick="clickbutton(\'' + data.features[i].properties[type + '_code'] + '\',\'' + type + '\')">' + data.features[i].properties[type] + '</div>';
 		}
-		var container_saisons = document.getElementById("container_saisons");
-		container_saisons.innerHTML = htmlSaisons;
+		var container = document.getElementById("container_" + type);    
+		container.innerHTML = html;
         //console.log(saison);
     }
     $.ajax({
         type: 'GET', 
-        url: url,
+        url: url_fun(type),
         dataType: 'JSON',
         success: getJson
     });
 }
-saison_fun()
-
-/*for (var i = 0; i < saisons.length; i++) {
-   htmlSaisons += '<div role="button" id="saison' + i + '" onclick="clickbutton(\'saison' + i + '\')">' + saisons[i] +'</div>';
-}
-var container_saisons = document.getElementById("container_saisons");
-container_saisons.innerHTML = htmlSaisons;*/
-
-
-//Construction des boutons milieux : une div bouton est créée pour chaque élément de la liste saisons, avec fonction onclick et remplissage du HTML
-var htmlMilieux = "";
-
-function milieu_fun(){
-	function getJson(data) {
-		for (var i = 0; i < data.features.length; i++) {
-			htmlMilieux += '<div role="button" id="milieu' + i + '" onclick="clickbutton(\'milieu' + i + '\')">' + data.features[i].properties['milieu'] +'</div>';
-		}
-		var container_milieux = document.getElementById("container_milieux");
-		container_milieux.innerHTML = htmlMilieux;
-        //console.log(milieu);
-    }
-    $.ajax({
-        type: 'GET', 
-        url: url,
-        dataType: 'JSON',
-        success: getJson
-    });
-}
-milieu_fun()
-
-/*var htmlMilieux = "";
-for (var i = 0; i < milieux.length; i++) {
-   htmlMilieux += '<div role="button" id="milieu' + i + '" onclick="clickbutton(\'milieu' + i + '\')">' + milieux[i] +'</div>';
-}
-var container_milieux = document.getElementById("container_milieux");
-container_milieux.innerHTML = htmlMilieux;*/
-
-//Construction des boutons sports : une div bouton est créée pour chaque élément de la liste saisons, avec fonction onclick et remplissage du HTML
-var htmlSports = "";
-
-function sport_fun(){
-	function getJson(data) {
-		for (var i = 0; i < data.features.length; i++) {
-			htmlSports += '<div role="button" id="sport' + i + '" onclick="clickbutton(\'sport' + i + '\')">' + data.features[i].properties['sport'] +'</div>';
-		}
-		var container_sports = document.getElementById("container_sports");
-		container_sports.innerHTML = htmlSports;
-        //console.log(sport);
-    }
-    $.ajax({
-        type: 'GET', 
-        url: url,
-        dataType: 'JSON',
-        success: getJson
-    });
-}
-sport_fun()
-
-/*var htmlSports = "";
-for (var i = 0; i < sports.length; i++) {
-   htmlSports += '<div role="button" id="sport' + i + '" onclick="clickbutton(\'sport' + i + '\')">' + sports[i] +'</div>';
-}
-var container_sports = document.getElementById("container_sports");
-container_sports.innerHTML = htmlSports;*/
-
 
 //Fonction de remplissage des variables correspondant aux choix utilisateurs avec le contenu HTML du bouton cliqué
-function clickbutton(id) {
-	if(id.includes('saison')){
+function clickbutton(arg, type) {
+	if(type == 'saison'){
 		user_saison = []
-		user_saison.push(document.getElementById(id).innerHTML)
+		user_saison = [arg]
 		console.log("saison : ", user_saison)
-	} else if (id.includes('milieu')) {
+		get_fun('milieu')
+	} else if (type == 'milieu') {
 		user_milieu = []
-		user_milieu.push(document.getElementById(id).innerHTML)
+		user_milieu = [arg]
 		console.log("milieu : ", user_milieu)
+		get_fun('sport')
 	} else {
 		user_sport = []
-		user_sport.push(document.getElementById(id).innerHTML)
+		user_sport = [arg]
 		console.log("sport : ", user_sport)
 	}
 }
+
+
+//Affichage des boutons saison
+get_fun('saison')
