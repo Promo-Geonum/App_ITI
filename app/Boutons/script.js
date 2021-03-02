@@ -3,22 +3,34 @@
 
 url1 = 'http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3A'
 url2 = '&maxFeatures=50&outputFormat=application%2Fjson'
-params = '&viewparams=saison_code:'
+var dep_long = "7.14518"
+var dep_lat = "43.99156"
+var arr_long = "7.342542"
+var arr_lat = "43.808902"
+var dep = "7.14518 43.99156"
+var arr = "7.342542 43.808902"
+params = '&viewparams=dep_long:' + dep_long + ';dep_lat:' + dep_lat + ';arr_long:' + arr_long + ';arr_lat:' + arr_lat
 
 let user_saison
 let user_milieu
 let user_sport
 
+//Déclaration points départ et arrivée
+
+
+
+
 //Fonction de construction de l'url pour les requêtes WFS GeoServer
 function url_fun(type) {
 	if (type == 'saison') {
-		url = url1 + type + url2
+		url = url1 + type + url2 + params
+		console.log(url)
 		return url
 	} else if (type == 'milieu') {
-		url = url1 + type + url2 + params + user_saison
+		url = url1 + type + url2 + params + ';saison_code:' + user_saison
 		return url
 	} else if (type == 'sport') {
-		url = url1 + type + url2 + params + user_saison + ';milieu_code:' + user_milieu
+		url = url1 + type + url2 + params + ';saison_code:' + user_saison + ';milieu_code:' + user_milieu
 		return url
 	}
 }

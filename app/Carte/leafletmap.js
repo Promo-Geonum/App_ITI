@@ -37,6 +37,7 @@ function generateMarker(layer, e) {
 						})
 						.addTo(layer)
 		depart_geoJSON = depart_marker.toGeoJSON()
+		depart_geoJSON = depart_geoJSON.geometry.coordinates[0] + " " + depart_geoJSON.geometry.coordinates[1]
 		console.log(depart_geoJSON)
 	} else {
 		arrivee_marker = new L.marker([y, x], {icon : arrivee_Icon, draggable : true})
@@ -46,7 +47,8 @@ function generateMarker(layer, e) {
 						})
 						.addTo(layer)
 		arrivee_geoJSON = arrivee_marker.toGeoJSON()
-		console.log(arrivee_geoJSON)			
+		arrivee_geoJSON = arrivee_geoJSON.geometry.coordinates[0] + " " + arrivee_geoJSON.geometry.coordinates[1]
+		console.log(arrivee_geoJSON)	
 	}
 }
 
