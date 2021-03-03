@@ -1,57 +1,46 @@
-//Déclaration variables (les listes sont provisoires et ont vocation à être remplacées par les requêtes SQL
+//Déclaration variables (les listes sont provisoires et ont vocation à être remplacées par les requêtes SQL)
 //ainsi le nombre de boutons sera corrélé aux sélections spatiales successives
-
-url1 = 'http://localhost:8080/geoserver/ProjetGeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ProjetGeonum%3A'
-url2 = '&maxFeatures=50&outputFormat=application%2Fjson'
-var dep_long = "7.24102"
-var dep_lat = "43.723475"
-var arr_long = "7.207042"
-var arr_lat = "43.671847"
 var dep = "7.14518 43.99156"
 var arr = "7.342542 43.808902"
-params = '&viewparams=dep_long:' + dep_long + ';dep_lat:' + dep_lat + ';arr_long:' + arr_long + ';arr_lat:' + arr_lat
 
 let user_saison
 let user_milieu
 let user_sport
-
-//Déclaration points départ et arrivée
-
-
+let etape_random
 
 
 //Fonction de construction de l'url pour les requêtes WFS GeoServer
-function url_fun(type) {
-	if (type == 'saison') {
-		url = url1 + type + url2 + params
-		console.log(url)
-		return url
-	} else if (type == 'milieu') {
-		url = url1 + type + url2 + params + ';saison_code:' + user_saison
-		return url
-	} else if (type == 'sport') {
-		url = url1 + type + url2 + params + ';saison_code:' + user_saison + ';milieu_code:' + user_milieu
-		return url
-	}
+function function_url(type) {
+	url1 = 'http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3A'
+	url2 = '&maxFeatures=50&outputFormat=application%2Fjson'
+	params = '&viewparams=dep:' + dep + ';arr:' + arr + ';saison_code:' + user_saison + ';milieu_code:' + user_milieu + ';sport_code:' + user_sport
+	console.log(url1 + type + url2 + params)
+	return url1 + type + url2 + params
 }
-
 
 //Construction des boutons : une div bouton est créée pour chaque élément des features collections récupérées via GeoServer, et ajoutée au container HTML correspondant
 //Évènement onclick sur chaque div renvoyant vers la fonction clickbutton
 //les deux arguments étant la var "xxx_code" de la donnée requêtée, et l'argument de la fonction get_fun (saison, milieu ou sport)
 function get_fun(type){
 	function getJson(data) {
-		var html = ""
-		for (var i = 0; i < data.features.length; i++) {
-			html += '<div role="button" onclick="clickbutton(\'' + data.features[i].properties[type + '_code'] + '\',\'' + type + '\')">' + data.features[i].properties[type] + '</div>';
+		if (type == 'etape') {
+			console.log(data)
+			var random = Math.floor(Math.random() * (data.features.length));
+			console.log(random)
+			etape_random = data.features[random]
+			console.log(etape_random)
+		} else {
+			var html = ""
+			for (var i = 0; i < data.features.length; i++) {
+				html += '<div role="button" onclick="clickbutton(\'' + data.features[i].properties[type + '_code'] + '\',\'' + type + '\')">' + data.features[i].properties[type] + '</div>';
+			}
+			var container = document.getElementById("container_" + type);
+			container.innerHTML = html;
 		}
-		var container = document.getElementById("container_" + type);
-		container.innerHTML = html;
-        //console.log(saison);
     }
     $.ajax({
-        type: 'GET',
-        url: url_fun(type),
+        type: 'GET', 
+        url: function_url(type),
         dataType: 'JSON',
         success: getJson
     });
@@ -73,6 +62,7 @@ function clickbutton(arg, type) {
 		user_sport = []
 		user_sport = [arg]
 		console.log("sport : ", user_sport)
+		get_fun('etape')
 	}
 }
 
