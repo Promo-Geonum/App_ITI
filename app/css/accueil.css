@@ -10,13 +10,14 @@ body {
 }
 
 #bouton_info {
-	text-align: right;
+	text-align: left;
 	margin-right: 10px;
 	margin-top: 10px;
 }
 
 #information {
-	position: relative;
+	position: fixed;
+	overflow: hidden;
 	z-index: 4;
 	background-color: #6fbc85;
 	border-color: #6fbc85;
@@ -28,6 +29,15 @@ body {
 	color: #004519;
 	font-weight: bold;
 	text-align: center;
+	text-overflow: "";
+	transition: width 2s, height 2s, border-radius 2s, font-size 2s;
+}
+
+#information:hover {
+	width: 300px;
+	height: 300px;
+	border-radius: 30px;
+	font-size: 20px;
 }
 
 #bloc_text_info {
