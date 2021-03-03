@@ -1,12 +1,12 @@
 //Déclaration variables (les listes sont provisoires et ont vocation à être remplacées par les requêtes SQL
 //ainsi le nombre de boutons sera corrélé aux sélections spatiales successives
 
-url1 = 'http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3A'
+url1 = 'http://localhost:8080/geoserver/ProjetGeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ProjetGeonum%3A'
 url2 = '&maxFeatures=50&outputFormat=application%2Fjson'
-var dep_long = "7.14518"
-var dep_lat = "43.99156"
-var arr_long = "7.342542"
-var arr_lat = "43.808902"
+var dep_long = "7.24102"
+var dep_lat = "43.723475"
+var arr_long = "7.207042"
+var arr_lat = "43.671847"
 var dep = "7.14518 43.99156"
 var arr = "7.342542 43.808902"
 params = '&viewparams=dep_long:' + dep_long + ';dep_lat:' + dep_lat + ';arr_long:' + arr_long + ';arr_lat:' + arr_lat
@@ -45,12 +45,12 @@ function get_fun(type){
 		for (var i = 0; i < data.features.length; i++) {
 			html += '<div role="button" onclick="clickbutton(\'' + data.features[i].properties[type + '_code'] + '\',\'' + type + '\')">' + data.features[i].properties[type] + '</div>';
 		}
-		var container = document.getElementById("container_" + type);    
+		var container = document.getElementById("container_" + type);
 		container.innerHTML = html;
         //console.log(saison);
     }
     $.ajax({
-        type: 'GET', 
+        type: 'GET',
         url: url_fun(type),
         dataType: 'JSON',
         success: getJson

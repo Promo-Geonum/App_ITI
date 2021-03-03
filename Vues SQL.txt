@@ -23,7 +23,9 @@ VUE MILIEU
 
 SELECT DISTINCT milieu, milieu_code
 FROM sport_06
-WHERE saison_code = '%saison_code%'
+WHERE ST_Intersects(geom,
+ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep_long% %dep_lat%, %arr_long% %arr_lat%)', 4326)),0.01))
+AND saison_code = '%saison_code%'
 
 paramètre / valeur par défaut / regex
 saison_code / / ^[\w\d\s]+$
@@ -32,7 +34,9 @@ VUE SPORT
 
 SELECT DISTINCT sport, sport_code
 FROM sport_06
-WHERE saison_code = '%saison_code%'
+WHERE ST_Intersects(geom,
+ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep_long% %dep_lat%, %arr_long% %arr_lat%)', 4326)),0.01))
+AND saison_code = '%saison_code%'
 AND milieu_code = '%milieu_code%'
 
 paramètre / valeur par défaut / regex
