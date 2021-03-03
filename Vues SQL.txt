@@ -2,32 +2,30 @@
 
 SELECT UpdateGeometrySRID('public', 'sport_06', 'geom', 4326)
 
++ requête ST_TRANSFORM etc. (voir avec Lubin ou Idrissa)
+
 
 VUE SAISON
 
 SELECT DISTINCT saison, saison_code from sport_06
 WHERE ST_Intersects(geom,
-ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep_long% %dep_lat%, %arr_long% %arr_lat%)', 4326)),0.01))
+ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep%, %arr%)', 4326)),0.01))
 
 paramètre / valeur par défaut / regex
-dep_lat / 43.99156 / ^[.\w\d\s]+$
-arr_long / 7.342542 / ^[.\w\d\s]+$
-arr_lat / 43.808902 / ^[.\w\d\s]+$
-dep_long / 7.14518 / ^[.\w\d\s]+$
-
-
-
-!!! Les deux vues suivantes sont à mettre à jour avec le critère INTERSECTS de la vue saison !!! (exemple : WHERE ST_INTERSECTS(blablabla) AND WHERE saison_code = '%saison_code%' )
+dep / 7.14518 43.99156 / ^[.\w\d\s]+$
+arr / 7.342542 43.808902 / ^[.\w\d\s]+$
 
 VUE MILIEU
 
 SELECT DISTINCT milieu, milieu_code
 FROM sport_06
 WHERE ST_Intersects(geom,
-ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep_long% %dep_lat%, %arr_long% %arr_lat%)', 4326)),0.01))
+ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep%, %arr%)', 4326)),0.01))
 AND saison_code = '%saison_code%'
 
 paramètre / valeur par défaut / regex
+dep / 7.14518 43.99156 / ^[.\w\d\s]+$
+arr / 7.342542 43.808902 / ^[.\w\d\s]+$
 saison_code / / ^[\w\d\s]+$
 
 VUE SPORT
@@ -35,10 +33,29 @@ VUE SPORT
 SELECT DISTINCT sport, sport_code
 FROM sport_06
 WHERE ST_Intersects(geom,
-ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep_long% %dep_lat%, %arr_long% %arr_lat%)', 4326)),0.01))
+ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep%, %arr%)', 4326)),0.01))
 AND saison_code = '%saison_code%'
 AND milieu_code = '%milieu_code%'
 
 paramètre / valeur par défaut / regex
+dep / 7.14518 43.99156 / ^[.\w\d\s]+$
+arr / 7.342542 43.808902 / ^[.\w\d\s]+$
 milieu_code / / ^[\w\d\s]+$
 saison_code / / ^[\w\d\s]+$
+
+
+VUE ETAPE
+
+SELECT * FROM sport_06
+WHERE ST_Intersects(geom,
+ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep%, %arr%)', 4326)),0.01))
+AND saison_code = '%saison_code%'
+AND milieu_code = '%milieu_code%'
+AND sport_code = '%sport_code%'
+
+paramètre / valeur par défaut / regex
+dep / 7.14518 43.99156 / ^[.\w\d\s]+$
+arr / 7.342542 43.808902 / ^[.\w\d\s]+$
+milieu_code / / ^[\w\d\s]+$
+saison_code / / ^[\w\d\s]+$
+sport_code / / ^[\w\d\s]+$
