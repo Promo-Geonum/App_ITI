@@ -3,17 +3,11 @@
 var dep = "7.14518 43.99156"
 var arr = "7.342542 43.808902"
 
-let user_saison
-let user_milieu
-let user_sport
-let etape_random
-
-
 //Fonction de construction de l'url pour les requêtes WFS GeoServer
 function function_url(type) {
 	url1 = 'http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3A'
 	url2 = '&maxFeatures=50&outputFormat=application%2Fjson'
-	params = '&viewparams=dep:' + dep + ';arr:' + arr + ';saison_code:' + user_saison + ';milieu_code:' + user_milieu + ';sport_code:' + user_sport
+	params = '&viewparams=dep:' + dep + ';arr:' + arr + ';saison_code:' + localStorage.saison + ';milieu_code:' + localStorage.milieu + ';sport_code:' + localStorage.sport
 	console.log(url1 + type + url2 + params)
 	return url1 + type + url2 + params
 }
@@ -24,11 +18,11 @@ function function_url(type) {
 function get_fun(type){
 	function getJson(data) {
 		if (type == 'etape') {
-			console.log(data)
+			//console.log(data)
 			var random = Math.floor(Math.random() * (data.features.length));
-			console.log(random)
-			etape_random = data.features[random]
-			console.log(etape_random)
+			localStorage.setItem('etape', JSON.stringify(data.features[random]));
+			var etape_random = localStorage.getItem('etape')
+			console.log('etape: ', JSON.parse(etape_random));
 		} else {
 			var html = ""
 			for (var i = 0; i < data.features.length; i++) {
@@ -39,7 +33,7 @@ function get_fun(type){
 		}
     }
     $.ajax({
-        type: 'GET', 
+        type: 'GET',
         url: function_url(type),
         dataType: 'JSON',
         success: getJson
@@ -49,23 +43,29 @@ function get_fun(type){
 //Fonction de remplissage des variables correspondant aux choix utilisateurs avec le contenu HTML du bouton cliqué
 function clickbutton(arg, type) {
 	if(type == 'saison'){
-		user_saison = []
-		user_saison = [arg]
-		console.log("saison : ", user_saison)
-		get_fun('milieu')
+		localStorage.saison = arg
+		console.log("saison : ", localStorage.saison)
 	} else if (type == 'milieu') {
-		user_milieu = []
-		user_milieu = [arg]
-		console.log("milieu : ", user_milieu)
-		get_fun('sport')
+		localStorage.milieu = arg
+		console.log("milieu : ", localStorage.milieu)
 	} else {
-		user_sport = []
-		user_sport = [arg]
-		console.log("sport : ", user_sport)
-		get_fun('etape')
+		localStorage.sport = arg
+		console.log("sport : ", localStorage.sport)
 	}
 }
 
 
 //Affichage des boutons saison
-get_fun('saison')
+function chargement() {
+	meta = document.getElementById('id_page')
+	if (meta.getAttribute('content') == 'saison') {
+		get_fun('saison')
+		console.log('test')
+	} else if (meta.getAttribute('content') == 'milieu') {
+		get_fun('milieu')
+	} else if (meta.getAttribute('content') == 'sport') {
+		get_fun('sport')
+	}
+}
+
+chargement()

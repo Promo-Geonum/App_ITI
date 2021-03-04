@@ -28,3 +28,23 @@ div[class="container"] {
 div[role="button"]:hover {
     background-color: #4da562;
 }
+
+#BoutonSuivant {
+	text-align: center;
+	margin-top: 10px;
+}
+#Suivant {
+	background-color: #6fbc85;
+	border-color: #6fbc85;
+	border-radius: 50px;
+	width: 300px;
+	height: 50px;
+	font-size: 35px;
+	font-weight: bold;
+	text-align: center;
+	color: #004519;
+}
+
+#Suivant:hover {
+    background-color: #4da562;
+}
