@@ -1,0 +1,67 @@
+body {
+	background-color: #004519;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  padding-top: 2%;
+  font-size: 400%;
+  font-style: italic;
+  font-family: geomanist;
+}
+
+.boutonSelection {
+	background-color: #6fbc85;
+	border-color: #6fbc85;
+	border-radius: 50px;
+	width: auto;
+	/* height: 50px; */
+	padding-left: 2%;
+	padding-right: 2%;
+	font-size: 50px;
+	font-weight: bold;
+	text-align: center;
+	color: #004519;
+	display: inline-block;
+	margin-top: 100px;
+	margin-right: 1%;
+	cursor: pointer;
+}
+
+div[class="container"] {
+	text-align: center;
+	padding-top: auto;
+  padding-bottom: auto;
+}
+
+.boutonSelection:hover {
+    background-color: #a2d4b0;
+}
+
+#BoutonSuivant {
+	text-align: center;
+	margin-top: 100px;
+}
+.Suivant {
+	background-color: #6fbc85;
+	border-color: #6fbc85;
+	border-radius: 50px;
+	width: 300px;
+	height: 50px;
+	font-size: 35px;
+	font-weight: bold;
+	text-align: center;
+	color: #004519;
+}
+
+.Suivant:hover {
+    background-color: #a2d4b0;
+}
+
+.boutonSelection:focus {
+  background-color: #ffbae6;
+  border-color: #ff62c6;
+  border-width: thick;
+  border-style: outset;
+}

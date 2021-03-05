@@ -1,0 +1,72 @@
+body {
+	background-color: #004519;
+}
+#logo {
+  width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+	padding-top: 150px;
+}
+
+#bouton_info {
+	text-align: left;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+#information {
+	position: fixed;
+	overflow: hidden;
+	z-index: 4;
+	background-color: #6fbc85;
+	border-color: #6fbc85;
+	border-radius: 90px;
+	width: 40px;
+	height: 40px;
+	font-family: monospace;
+	font-size: 30px;
+	color: #004519;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: "";
+	transition: width 2s, height 2s, border-radius 2s, font-size 2s;
+}
+
+#information:hover {
+	width: 20%;
+	height: 30%;
+	border-radius: 30px;
+	font-size: 150%;
+}
+
+#BoutonDemarrer {
+	text-align: center;
+	margin-top: 10px;
+}
+#Demmarrer {
+	background-color: #6fbc85;
+	border-color: #6fbc85;
+	border-radius: 50px;
+	width: 300px;
+	height: 50px;
+	font-size: 35px;
+	font-weight: bold;
+	text-align: center;
+	color: #004519;
+}
+
+#Demmarrer:hover {
+    background-color: #a2d4b0;
+}
+
+.text_presentation {
+  margin-top: 2%;
+}
+
+h5 {
+  color: #6fbc85;
+  text-align: center;
+  font-size: 120%;
+  font-style: oblique;
+}

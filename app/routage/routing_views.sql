@@ -16,6 +16,7 @@ GROUP BY v.id, v.the_geom
 
 
 
+
 --shortest path
 
 SELECT
