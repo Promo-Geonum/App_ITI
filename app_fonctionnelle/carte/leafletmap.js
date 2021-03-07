@@ -5,8 +5,9 @@ var osm_layer = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	});
 
 //Creation and settings of the map
-var mymap = L.map('mapid').setView([45.757523270000576, 4.831581115722656], 13);
+var mymap = L.map('mapid').setView([43.957236, 7.209778], 10);
 
+ 
 //Add the osm layer to the map
 osm_layer.addTo(mymap);
 
