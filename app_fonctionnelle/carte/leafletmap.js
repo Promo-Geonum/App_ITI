@@ -4,8 +4,14 @@ var osm_layer = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	'<a href="https://creativecommons.org/licenses/by-sa/2.0/" target = "_blank">CC-BY-SA</a>',
 	});
 
+//Loading of previous data
+etape = JSON.parse(localStorage.getItem('etape'))
+dep_coords = localStorage.dep.split(' ') // 'coord coord' => [coord, coord]
+arr_coords = localStorage.arr.split(' ') // 'coord coord' => [coord, coord]
+etape_coords = etape.geometry.coordinates
+
 //Creation and settings of the map
-var mymap = L.map('mapid').setView([43.957236, 7.209778], 10);
+var mymap = L.map('mapid').fitBounds([[dep_coords[1], dep_coords[0]], [arr_coords[1], arr_coords[0]]], {padding: [20, 20]});
 
  
 //Add the osm layer to the map
@@ -21,10 +27,17 @@ let arrivee_geoJSON
 let depart_marker
 let arrivee_marker
 
-//Custom icon for the arrival point
-arrivee_Icon = new L.icon ({
-	iconUrl: "./img/flag-outline.svg",
-	iconSize: [30, 30]
+//Custom icons for departure and arrival
+arrivee_icon = new L.icon ({
+	iconUrl: "../img/marker_arrivee.png",
+	iconSize: [30, 30],
+	iconAnchor: [16, 30]
+})
+
+depart_icon = new L.icon ({
+	iconUrl: "../img/marker_depart.png",
+	iconSize: [30, 30],
+	iconAnchor: [16, 30]
 })
 
 var selectedPoint = null;
@@ -79,7 +92,7 @@ mymap.on('click', onMapClick);
 
 //Geocoding with geocoder plugin: extraction of geocoding's result's center's coords.
 
-var geocoder = L.Control.geocoder({
+/*var geocoder = L.Control.geocoder({
   defaultMarkGeocode: false,
   collapsed: false,
 })
@@ -91,20 +104,11 @@ var geocoder = L.Control.geocoder({
 	console.log(center)
 	new L.marker([y, x]).addTo(mymap)   
   })
-geocoder.addTo(mymap);
+geocoder.addTo(mymap);*/
 
 
 
-//GESTION DONNEES PRECEDENTES
-console.log('Saison :', localStorage.saison)
-console.log('Milieu :', localStorage.milieu)
-console.log('Sport :', localStorage.sport)
 
-etape = JSON.parse(localStorage.getItem('etape'))
-console.log('Etape :', etape)
-
-new L.marker([etape.geometry.coordinates[1], etape.geometry.coordinates[0]]).addTo(mymap)
-etape_coords = etape.geometry.coordinates
 
 
 // empty geojson layer for the shortes path result
@@ -154,10 +158,12 @@ function loadVertex(response, typePoint) {
 	mymap.removeLayer(pathLayer);
 	if (typePoint == etape_coords) {
 		etape_id = features[0].properties.id;
-	} else if (typePoint == arr) {
-		target = features[0].properties.id;
+	} else if (typePoint == arr_coords) {
+		target_id = features[0].properties.id;
+		target_coords = features[0].geometry.coordinates
 	} else {
-		source = features[0].properties.id;
+		source_id = features[0].properties.id;
+		source_coords = features[0].geometry.coordinates
 	}
 }
 
@@ -172,11 +178,40 @@ function getRoute(un, deux) {
 	});
 }
 
-dep = localStorage.dep.split(' ') // 'coord coord' => [coord, coord]
-arr = localStorage.arr.split(' ') // 'coord coord' => [coord, coord]
 
 getVertex(etape_coords)
-getVertex(dep)
-getVertex(arr)
-getRoute(source, etape_id)
-getRoute(etape_id, target)
+getVertex(dep_coords)
+getVertex(arr_coords)
+
+//Creation markers for the stage, the departure and the arrival
+etape_marker = new L.marker([etape.geometry.coordinates[1], etape.geometry.coordinates[0]]).addTo(mymap)
+
+depart_marker = new L.marker([source_coords[1], source_coords[0]],
+	{icon: depart_icon,
+	 draggable: true}).on("dragend", function(e) {
+	 						dep_coords = [e.target.getLatLng().lng, e.target.getLatLng().lat]
+	 						console.log(e.target.getLatLng().lng)
+	 						console.log(e.target.getLatLng().lat)
+	 						console.log(dep_coords)
+	 						getVertex(dep_coords)
+	 						pathLayer.clearLayers()
+	 						getRoute(source_id, etape_id)
+	 						getRoute(etape_id, target_id)
+						}).addTo(mymap)
+
+arrivee_marker = new L.marker([target_coords[1], target_coords[0]],
+	{icon: arrivee_icon,
+	 draggable: true}).on("dragend", function(e) {
+							arr_coords = [e.target.getLatLng().lng, e.target.getLatLng().lat]
+	 						console.log(e.target.getLatLng().lng)
+	 						console.log(e.target.getLatLng().lat)
+	 						console.log(arr_coords)
+	 						getVertex(arr_coords)
+	 						pathLayer.clearLayers()
+	 						getRoute(source_id, etape_id)
+	 						getRoute(etape_id, target_id)
+						}).addTo(mymap)
+
+
+getRoute(source_id, etape_id)
+getRoute(etape_id, target_id)

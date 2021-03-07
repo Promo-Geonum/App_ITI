@@ -59,12 +59,13 @@ function clickbutton(arg, type) {
 //Affichage des boutons saison
 function chargement() {
 	meta = document.getElementById('id_page')
-	if (meta.getAttribute('content') == 'saison') {
+	if (meta.getAttribute('content') == 'adresses') {
 		//console.log(localStorage.dep)
 		//console.log(localStorage.arr)
+		localStorage.dep = localStorage.arr = localStorage.saison = localStorage.milieu = localStorage.sport = ""
+	} else if (meta.getAttribute('content') == 'saison') {
 		localStorage.saison = localStorage.milieu = localStorage.sport = ""
 		get_fun('saison')
-		//console.log('test')
 	} else if (meta.getAttribute('content') == 'milieu') {
 		localStorage.milieu = localStorage.sport = ""
 		get_fun('milieu')
@@ -72,6 +73,35 @@ function chargement() {
 		localStorage.sport = ""
 		get_fun('sport')
 	}
+}
+
+function verifierChoix(arg) {
+	if (arg == 'adresses') {
+		if (localStorage.dep == '' || localStorage.arr == '') {
+			alert('Veuillez choisir un point de départ et une destination')
+		} else {
+			location.replace('saison.html')
+		}
+	} else if (arg == 'saison') {
+		if (localStorage.saison == '') {
+			alert('Veuillez choisir une saison')
+		} else {
+			location.replace('milieu.html')
+		}
+	} else if (arg == 'milieu') {
+		if (localStorage.milieu == '') {
+			alert('Veuillez choisir un milieu de pratique')
+		} else {
+			location.replace('sport.html')
+		}
+	} else if (arg == 'sport') {
+		if (localStorage.sport == '') {
+			alert('Veuillez choisir une activité sportive')
+		} else {
+			get_fun('etape')
+		}
+	}
+
 }
 
 chargement()

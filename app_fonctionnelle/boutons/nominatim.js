@@ -68,6 +68,12 @@ function addr_search(arg) {
             }).appendTo('#results_' + arg);
         } else {
             $('<p>', { html: "Pas de résultats trouvés" }).appendTo('#results_' + arg);
+            if (arg == 'dep') {
+                localStorage.dep = ''
+            }
+            if (arg == 'arr') {
+                localStorage.arr = ''
+            }
         }
     });
 }

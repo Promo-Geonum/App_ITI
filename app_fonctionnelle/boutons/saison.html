@@ -12,17 +12,12 @@
 </head>
 
 <body>
-	<!-- boutton retour -->  
-<a href="adresses.html" onclick="javascript:history.go(-1)"> <INPUT type="button" value="Page précédente" onclick="javascript:history.go(-1)"> </a>
-
 	<div id="container_saison" class="container"></div>
 	
     <div id="BoutonSuivant" class="boutonSuivant">
-    	<a href="milieu.html">
-    		<button class="Suivant" type="button">
-        		Suivant
-    		</button>
-   		</a>
+    	<button class="Suivant" type="button" onclick="verifierChoix('saison')">
+        	Suivant
+    	</button>
   	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
