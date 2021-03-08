@@ -21,7 +21,8 @@ GROUP BY v.id, v.the_geom
 
 SELECT
 	MIN(a.seq) AS seq,  
-        ST_Collect(b.geom)      
+        ST_Collect(b.geom),	
+		sum(b.distance) AS distance		
         FROM
 
         pgr_dijkstra ('
