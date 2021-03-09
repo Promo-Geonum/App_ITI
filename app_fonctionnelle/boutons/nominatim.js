@@ -3,9 +3,10 @@
 //construction d'un format d'adresse personnalisé
 //alimentation d'un bouton select avec chacune des options obtenues
 function addr_search(arg) {
-    var inp = document.getElementById("adr_" + arg);
+    var inp = document.getElementById("addr_" + arg);
 
-    $.getJSON('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&viewbox=6.530757121,44.388548321,7.746819282,43.409038384&bounded=1&limit=15&q=' + inp.value, function(data) {
+    $.getJSON('https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&viewbox=6.530757121,44.388548321,7.746819282,43.409038384&bounded=1&limit=15&q='
+        + inp.value, function(data) {
         var items = []
         var first_result_array = []
 
@@ -33,7 +34,6 @@ function addr_search(arg) {
                 //itération dans la liste des métadonnées et construction d'une array avec l'ensemble des métadonnées existantes pour l'adresse itérée
                 for (let i = 0; i<adresse.length; i++) {
                     if (typeof adresse[i] != 'undefined' && adresse[i] != 'undefined' && adresse[i] !== undefined) {
-                        console.log(typeof name)
                         name.push(adresse[i])
                     }
                 }
@@ -88,3 +88,24 @@ function chooseAddr(arg, lat, lon) {
         console.log("localStorage.arr : ", localStorage.arr)
     }
 }
+
+function keyEnter() {
+    document.getElementById('addr_dep').addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault()
+            // Trigger the button element with a click
+            document.getElementById('boutonrechDep').click()
+        }
+    })
+
+    document.getElementById('addr_arr').addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault()
+            document.getElementById('boutonrechArr').click()
+        }
+    })
+}
+
+keyEnter()
