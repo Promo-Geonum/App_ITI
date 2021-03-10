@@ -236,9 +236,6 @@ title.onAdd = function (map) {
 title.addTo(mymap);
 
 
-
-
-
 //Passage du trajet au-dessus des marqueurs
 mymap.getPane('overlayPane').style.zIndex = 630
 var pathLayer = L.geoJSON(null)
@@ -324,14 +321,13 @@ info.onAdd = function (map) {
 
 info.update = function (distance1, distance2) {
 	distance = distance1 + distance2
-    this._div.innerHTML = '<p>Votre trajet fait <b>' + distance + 'km</b>, dont <b>' + distance1 + 'km</b> de votre point de départ actuel <img class=\'dep_arr_img\' src=\'../img/marker_depart.png\'> à votre étape sportive et <b>' + distance2 + 'km</b> de votre étape sportive à votre destination actuelle <img class=\'dep_arr_img\' src=\'../img/marker_arrivee.png\'>.</p><p>À vélo, cela vous prendrait <b>' + (distance/10) + 'h</b> à raison de 10km/h de moyenne.</p><p>À pied, cela vous prendrait <b>' + (distance/2.5) + 'h</b> à raison de 2.5km/h de moyenne.</p><p><a href="#" download="Rando_AlpesMaritimes.gpx" id="exportGPX">Télécharger le tracé en fichier .GPX</a></p>';
+    this._div.innerHTML = '<p>Votre trajet fait <b>' + distance + 'km</b>, dont <b>' + distance1 + 'km</b> de votre point de départ actuel <img class=\'dep_arr_img\' src=\'../img/marker_depart.png\'> à votre étape sportive et <b>' + distance2 + 'km</b> de votre étape sportive à votre destination actuelle <img class=\'dep_arr_img\' src=\'../img/marker_arrivee.png\'>.</p><p>À vélo, cela vous prendrait <b>' + (distance/10) + 'h</b> à raison de 10km/h de moyenne.</p><p>À pied, cela vous prendrait <b>' + (distance/2.5) + 'h</b> à raison de 2.5km/h de moyenne.</p>';
 };
 
 info.addTo(mymap);
 
 
-//Zoom
-new L.Control.Zoom({ position: 'topleft' }).addTo(mymap);
+
 
 //Logo
 var logo = L.control({position: 'topleft'});
@@ -342,6 +338,9 @@ logo.onAdd = function (map) {
 };
 logo.addTo(mymap);
 
+//Zoom
+new L.Control.Zoom({ position: 'topleft' }).addTo(mymap);
+
 //Bouton retour
 var retour = L.control({position: 'topleft'});
 retour.onAdd = function (map) {
@@ -350,6 +349,15 @@ retour.onAdd = function (map) {
     return div;
 };
 retour.addTo(mymap);
+
+//Export
+var exportGPX = L.control({position: 'topright'});
+exportGPX.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'export'); // create a div with a class "export"
+    div.innerHTML = '<a id="exportGPX" href="#" download="Rando_AlpesMaritimes.gpx">Télécharger le tracé au format .GPX</a>';
+    return div;
+};
+exportGPX.addTo(mymap);
 
 
 
@@ -395,7 +403,10 @@ interaction.onAdd = function (map) {
 interaction.addTo(mymap);
 
 
-//EXPLIQUER
+//Application d'un événement sur click pour l'élément avec un id égal à exportGPX
+//Construction d'une FeatureCollection GeoJSON composée de deux MultiLineString qui ont comme coordonnées celles des deux parties du trajet affiché sur la carte
+//Utilisation du plugin/fonction togpx() pour transformer le GeoJSON en GPX, et export.
+
 $("#exportGPX").on('click', function (event) {
 	AB_geojson = AB_leaflet.toGeoJSON()
 	BC_geojson = BC_leaflet.toGeoJSON()
@@ -431,5 +442,5 @@ $("#exportGPX").on('click', function (event) {
 			'href': data,
 			'target': '_blank'
 		});
-
+		
 	});

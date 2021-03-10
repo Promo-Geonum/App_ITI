@@ -1,5 +1,4 @@
 function Brice() {
-	console.log('appelé')
 	BriceIcon = new L.icon ({
 		iconUrl: "../img/picto_sport/SURF.png",
 		iconSize: [25, 25]
