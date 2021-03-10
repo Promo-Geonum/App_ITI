@@ -337,7 +337,7 @@ new L.Control.Zoom({ position: 'topleft' }).addTo(mymap);
 var logo = L.control({position: 'topleft'});
 logo.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'logo'); // create a div with a class "logo"
-    div.innerHTML = '<img id="logo" src="../img/logoITI.png"></a>';
+    div.innerHTML = '<img id="logo" src="../img/logoITI_transparent.png"></a>';
     return div;
 };
 logo.addTo(mymap);
