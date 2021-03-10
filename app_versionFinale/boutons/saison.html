@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css"/>
+
+	<title>ITI</title>
+  <link rel="shortcut icon" type="image" href="../img/favicon.ico"/>
+
+	<meta id ="id_page" content="saison">
+
+</head>
+
+<body>
+  <img src="../img/LogoITI.png" class="LogoITI" alt="Logo d'ITI">
+  <a href="adresses.html">
+    <img id="boutonRetour" src="../img/Picto_Retour.png" alt="Retour Arrière"></a>
+  <div class="TexteQuestion">
+    <h2>Sélectionnez une saison*</h2>
+  </div>
+	<div id="container_saison" class="container"></div>
+
+    <div id="BoutonSuivant" class="boutonSuivant">
+    	<button class="Suivant" type="button" onclick="verifierChoix('saison')">
+        	Suivant
+    	</button>
+  	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+	<script src="script.js"></script>
+
+  <h3>* Été = sport se pratiquant qu'en été / Hiver = sport se pratiquant qu'en hiver / Toutes = sport se pratiquant toute l'année</h3>
+</body>
+
+</html>

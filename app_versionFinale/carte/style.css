@@ -1,0 +1,91 @@
+body {
+	width: 99vw;
+	height: 98vh;
+  background-color: #004519;
+  /* position: fixed; */
+}
+
+#mapid {
+	width:100%;
+	height:100%;
+}
+
+.layers-control-img{
+	width: 20px;
+	height: 20px;
+  padding-left: 3%;
+  padding-bottom: 1%;
+}
+
+.legend {
+    line-height: 25px;
+    color: #555;
+}
+
+.legend i {
+    width: 25px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.info, .title, .interaction {
+  padding: 6px 8px;
+  font: 12px/14px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  line-height: 18px;
+  max-width: 250px;
+  text-align: center;
+}
+
+.title{
+  color: #555;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: rgba(255,255,255,1);
+  max-width: 350px;
+}
+
+.leaflet-center {
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.dep_arr_img {
+  widht:15px;
+  height:15px;
+}
+
+.interaction {
+  max-width: 300px;
+}
+
+#boutonRetour {
+  position: absolute;
+  width: 3%;
+  height: auto;
+  top: 9%;
+  left: 0.4%;
+  z-index: 80000;
+}
+
+#boutonRetour:active {
+  padding-top: 0.2%;
+  z-index: 80000;
+}
+
+#exportGPX {
+  position: absolute;
+  z-index: 8001;
+  right: 1.2%;
+  top: 25%;
+  font-size: 130%;
+  color: black;
+  background-color: #ffffff90;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+  border-radius: 50px;
+}

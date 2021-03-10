@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+	<title>ITI</title>
+  <link rel="shortcut icon" type="image" href="../img/favicon.ico"/>
+
+	<meta id ="id_page" content="adresses">
+
+
+</head>
+
+<body>
+  <img src="../img/LogoITI.png" class="LogoITI" alt="Logo d'ITI">
+  <a href="../index.html">
+    <img id="boutonRetour" src="../img/Picto_Retour.png" alt="Retour Arrière">
+  </a>
+	<div id="search_dep">
+      <h1>Renseignez votre adresse de départ</h1>
+  		<input type="text" name="addr" value="" id="addr_dep" size="10" placeholder="Départ"/>
+  		<button id="boutonrechDep" type="image" onclick="addr_search('dep')"><img class="img_rech" src="../img/recherche_picto.png"/></button>
+  		<span id="results_dep"></span>
+	</div>
+
+  <div id="search_arr">
+      <h1>Renseignez votre adresse d'arrivée</h1>
+  		<input type="text" name="addr" value="" id="addr_arr" size="10" placeholder="Arrivée"/>
+  		<button id="boutonrechArr" type="image" onclick="addr_search('arr')"><img class="img_rech" src="../img/recherche_picto.png"/></button>
+  		<span id="results_arr"></span>
+	</div>
+
+	<div id="BoutonSuivant" class="boutonSuivant">
+    		<button class="Suivant" type="button" onclick="verifierChoix('adresses')">
+        		Suivant
+    		</button>
+  </div>
+
+
+	<script src="script.js"></script>
+  <script src="nominatim.js"></script>
+
+
+
+</body>
+
+</html>
