@@ -1,6 +1,6 @@
 body {
 	width: 99vw;
-	height: 98vh;
+	height: 97vh;
   background-color: #004519;
   /* position: fixed; */
 }
@@ -64,28 +64,16 @@ body {
 }
 
 #boutonRetour {
-  position: absolute;
-  width: 3%;
-  height: auto;
-  top: 9%;
-  left: 0.4%;
-  z-index: 80000;
+  widht:35px;
+  height:35px;
 }
 
-#boutonRetour:active {
-  padding-top: 0.2%;
-  z-index: 80000;
+#logo {
+  widht: 100px;
+  height: 75px;
 }
 
-#exportGPX {
-  position: absolute;
-  z-index: 8001;
-  right: 1.2%;
-  top: 25%;
-  font-size: 130%;
-  color: black;
-  background-color: #ffffff90;
-  padding-left: 0.5%;
-  padding-right: 0.5%;
-  border-radius: 50px;
+
+.logo {
+  clear: none;
 }

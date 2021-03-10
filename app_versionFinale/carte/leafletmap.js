@@ -12,8 +12,8 @@ var CartoDB_Voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles
 
 
 var basemaps = {
-	"OSM": osm_layer,
-  "CartoDB_Voyager" : CartoDB_Voyager,
+	"Fonds de carte OpenStreetMap": osm_layer,
+ 	"Fonds de carte CartoDB Voyager" : CartoDB_Voyager,
 }
 
 //Loading of previous data
@@ -215,7 +215,7 @@ var overlayMaps = {
 
 //Creation and settings of the map
 var mymap = L.map('mapid', {
-	layers: [TOUT], zoomSnap: 0.01})
+	layers: [TOUT], zoomSnap: 0.01, zoomControl: false})
 .fitBounds([[dep_coords[1], dep_coords[0]], [arr_coords[1], arr_coords[0]]], {padding: [175, 175]});
 
 //Ajout contrôle des couches
@@ -234,6 +234,8 @@ title.onAdd = function (map) {
     return div;
 };
 title.addTo(mymap);
+
+
 
 
 
@@ -322,10 +324,34 @@ info.onAdd = function (map) {
 
 info.update = function (distance1, distance2) {
 	distance = distance1 + distance2
-    this._div.innerHTML = '<p>Votre trajet fait <b>' + distance + 'km</b>, dont <b>' + distance1 + 'km</b> de votre point de départ actuel <img class=\'dep_arr_img\' src=\'../img/marker_depart.png\'> à votre étape sportive et <b>' + distance2 + 'km</b> de votre étape sportive à votre destination actuelle <img class=\'dep_arr_img\' src=\'../img/marker_arrivee.png\'>.</p><p>À vélo, cela vous prendrait <b>' + (distance/10) + 'h</b> à raison de 10km/h de moyenne.</p><p>À pied, cela vous prendrait <b>' + (distance/2.5) + 'h</b> à raison de 2.5km/h de moyenne.</p>';
+    this._div.innerHTML = '<p>Votre trajet fait <b>' + distance + 'km</b>, dont <b>' + distance1 + 'km</b> de votre point de départ actuel <img class=\'dep_arr_img\' src=\'../img/marker_depart.png\'> à votre étape sportive et <b>' + distance2 + 'km</b> de votre étape sportive à votre destination actuelle <img class=\'dep_arr_img\' src=\'../img/marker_arrivee.png\'>.</p><p>À vélo, cela vous prendrait <b>' + (distance/10) + 'h</b> à raison de 10km/h de moyenne.</p><p>À pied, cela vous prendrait <b>' + (distance/2.5) + 'h</b> à raison de 2.5km/h de moyenne.</p><p><a href="#" download="Rando_AlpesMaritimes.gpx" id="exportGPX">Télécharger le tracé en fichier .GPX</a></p>';
 };
 
 info.addTo(mymap);
+
+
+//Zoom
+new L.Control.Zoom({ position: 'topleft' }).addTo(mymap);
+
+//Logo
+var logo = L.control({position: 'topleft'});
+logo.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'logo'); // create a div with a class "logo"
+    div.innerHTML = '<img id="logo" src="../img/logoITI.png"></a>';
+    return div;
+};
+logo.addTo(mymap);
+
+//Bouton retour
+var retour = L.control({position: 'topleft'});
+retour.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'retour'); // create a div with a class "retour"
+    div.innerHTML = '<a href="../index.html"><img id="boutonRetour" src="../img/Picto_Recommencer.png" alt="Recommencer" title="Revenir au début"></a>';
+    return div;
+};
+retour.addTo(mymap);
+
+
 
 //Creation of markers for the stage, the departure and the arrival
 //definition of ondragend functions, which update the routes with the new locations of markers
