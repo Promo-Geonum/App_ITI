@@ -142,3 +142,15 @@ Regular expression for validation is:
 dep and arr: `^[.\w\d\s]+$`
 
 saison_code, milieu_code and sport_code: `^[\w\d\s]+$`
+
+
+## JavaScript
+
+All the JS files are well commented.
+
+ILLUSTRATION
+
+## Map's features
+
+## Limits of ITI
+graphe : chemins, pas de coût
