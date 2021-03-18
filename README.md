@@ -21,7 +21,7 @@ Then create the following SQL views, EPSG is 4326 for all:
 
 ### chemin
 
-This is the "route" view, with two parameters 'source' and 'target':
+This is the "route" view, with two parameters '''source''' and '''target''':
 
 SELECT
 	MIN(a.seq) AS seq,  
