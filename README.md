@@ -34,7 +34,7 @@ FROM
 ```
 
 Regular expression for validation is:
-^[\w\d\s]+$
+`^[\w\d\s]+$`
 
 ### noeud
 
@@ -55,19 +55,19 @@ WHERE
 GROUP BY v.id, v.the_geom
 ```
 Regular expression for validation is:
-^[.\w\d\s]+$
+`^[.\w\d\s]+$`
 
 Default values can be:
-x: 7.14518
-y: 43.99156
+x: `7.14518`
+y: `43.99156`
 
 
 ### tout
 
 This view returns all the `sport_06` table:
-
+```
 SELECT * FROM sport_06
-
+```
 
 ### saison
 
@@ -78,11 +78,11 @@ WHERE ST_Intersects(geom,
 ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep%, %arr%)', 4326)),0.01))
 ```
 Regular expression for validation is:
-^[.\w\d\s]+$
+`^[.\w\d\s]+$`
 
 Default values can be:
-dep : 7.14518 43.99156
-arr : 7.342542 43.808902
+dep : `7.14518 43.99156`
+arr : `7.342542 43.808902`
 
 ### milieu
 
@@ -95,8 +95,8 @@ ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep%, %arr%)', 4326)),0.01))
 AND saison_code = '%saison_code%'
 ```
 Regular expression for validation is:
-dep and arr: ^[.\w\d\s]+$
-saison_code: ^[\w\d\s]+$
+dep and arr: `^[.\w\d\s]+$`
+saison_code: `^[\w\d\s]+$`
 
 ### sport
 
@@ -110,8 +110,8 @@ AND saison_code = '%saison_code%'
 AND milieu_code = '%milieu_code%'
 ```
 Regular expression for validation is:
-dep and arr: ^[.\w\d\s]+$
-saison_code and milieu_code: ^[\w\d\s]+$
+dep and arr: `^[.\w\d\s]+$`
+saison_code and milieu_code: `^[\w\d\s]+$`
 
 ### etape
 
@@ -125,5 +125,5 @@ AND milieu_code = '%milieu_code%'
 AND sport_code = '%sport_code%'
 ```
 Regular expression for validation is:
-dep and arr: ^[.\w\d\s]+$
-saison_code, milieu_code and sport_code: ^[\w\d\s]+$
+dep and arr: `^[.\w\d\s]+$`
+saison_code, milieu_code and sport_code: `^[\w\d\s]+$`
