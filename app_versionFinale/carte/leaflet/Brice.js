@@ -1,3 +1,4 @@
+// LOL function, because there's no surfing in Nice (sorry Brice!)
 function Brice() {
 	BriceIcon = new L.icon ({
 		iconUrl: "../img/picto_sport/SURF.png",
