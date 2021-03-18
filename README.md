@@ -97,7 +97,9 @@ ST_Buffer(ST_Envelope(ST_GeomFromText('LINESTRING(%dep%, %arr%)', 4326)),0.01))
 AND saison_code = '%saison_code%'
 ```
 Regular expression for validation is:
+
 dep and arr: `^[.\w\d\s]+$`
+
 saison_code: `^[\w\d\s]+$`
 
 ### sport
