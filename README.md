@@ -1,6 +1,6 @@
 # ITI, multisports routing application
 
-ITI is the result of a final year project of 4 students of the GeoNum master (Lyon / Saint-Étienne, France).
+ITI is the result of a final year project of 4 students of the [GeoNum master's degree](https://mastergeonum.org/) (Lyon / Saint-Étienne, France).
 
 It is an application that allows the user to calculate a route through a sport activity chosen by him.
 
@@ -8,10 +8,10 @@ It works with a PostgreSQL database, connected to a GeoServer that interfaces wi
 
 ## Database
 
-To install the application, the BD.sql database must be downloaded and imported into a PostgreSQL database (for example via the "restore" option of PgAdmin).
+To install the application, the `BD.sql` database must be downloaded and imported into a PostgreSQL database (for example via the "restore" option of PgAdmin).
 The extensions installed with the database are PostGIS and pgRouting.
 
-The road graph used in ITI was created from the IGN's BD TOPO and is limited to the Alpes-Maritimes department, but in principle you can use any road graph you have (obtained with osmtopgrouting for example).
+The road graph used in ITI was created from the IGN's [BD TOPO](https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html) and is limited to the Alpes-Maritimes department, but in principle you can use any road graph you have (obtained with osmtopgrouting for example).
 
 ## GeoServer
 
