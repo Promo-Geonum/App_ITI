@@ -1,0 +1,115 @@
+body {
+	width: 99vw;
+	height: 97vh;
+  background-color: #004519;
+}
+
+#mapid {
+	width:100%;
+	height:100%;
+}
+
+.layers-control-img{
+	width: 20px;
+	height: 20px;
+  padding-left: 3%;
+  padding-bottom: 1%;
+}
+
+.legend {
+  line-height: 25px;
+  color: #555;
+}
+
+.legend i {
+  width: 25px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.info, .title, .interaction, .export {
+  padding: 6px 8px;
+  font: 12px/14px Arial, Helvetica, sans-serif;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  line-height: 18px;
+  max-width: 300px;
+  width: 150%;
+  text-align: center;
+  color: black;
+  font-size: 130%;
+}
+
+.export {
+  box-shadow: 0px 10px 14px -7px #276873;
+  background: linear-gradient(to bottom, #6fbc85 5%, #58966a 100%);
+  background-color: #6fbc85;
+  cursor: pointer;
+}
+
+#exportGPX {
+  display: block;
+  color: #ffffff;
+  font: 14px/14px Arial, Helvetica, sans-serif;
+  font-family: Arial;  
+  padding: 6px 8px;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #3d768a;
+}
+
+.export:hover {
+  background:linear-gradient(to bottom, #58966a 5%, #6fbc85 100%);
+  background-color: #58966a;
+}
+
+.export:active {
+  position: relative;
+  top: 1px;
+}
+
+.title{
+  color: #555;
+  font: 20px/22px Arial, Helvetica, sans-serif;
+  background: rgba(255,255,255,1);
+  max-width: 400px;
+}
+
+.leaflet-center {
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.dep_arr_img {
+  widht:15px;
+  height:15px;
+}
+
+.interaction {
+  max-width: 300px;
+}
+
+#boutonRetour {
+  width: 50px;
+  height: 50px;
+}
+
+.retour {
+  clear: none;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+#logo {
+  width: 150px;
+  height: 115px;
+}
+
+.logo {
+  background: rgba(255,255,255,1);
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  border-radius: 5px;
+}
