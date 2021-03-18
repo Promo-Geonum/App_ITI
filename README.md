@@ -33,8 +33,7 @@ FROM
 	a INNER JOIN edges b ON (a.edge = b.gid) ORDER BY seq
 ```
 
-Regular expression for validation is:
-`^[\w\d\s]+$`
+Regular expression for validation is: `^[\w\d\s]+$`
 
 ### noeud
 
@@ -54,11 +53,12 @@ WHERE
   AND (e.source = v.id OR e.target = v.id)
 GROUP BY v.id, v.the_geom
 ```
-Regular expression for validation is:
-`^[.\w\d\s]+$`
+Regular expression for validation is: `^[.\w\d\s]+$`
 
 Default values can be:
+
 x: `7.14518`
+
 y: `43.99156`
 
 
@@ -81,8 +81,10 @@ Regular expression for validation is:
 `^[.\w\d\s]+$`
 
 Default values can be:
-dep : `7.14518 43.99156`
-arr : `7.342542 43.808902`
+
+dep: `7.14518 43.99156`
+
+arr: `7.342542 43.808902`
 
 ### milieu
 
@@ -110,7 +112,9 @@ AND saison_code = '%saison_code%'
 AND milieu_code = '%milieu_code%'
 ```
 Regular expression for validation is:
+
 dep and arr: `^[.\w\d\s]+$`
+
 saison_code and milieu_code: `^[\w\d\s]+$`
 
 ### etape
@@ -125,5 +129,7 @@ AND milieu_code = '%milieu_code%'
 AND sport_code = '%sport_code%'
 ```
 Regular expression for validation is:
+
 dep and arr: `^[.\w\d\s]+$`
+
 saison_code, milieu_code and sport_code: `^[\w\d\s]+$`
