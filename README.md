@@ -23,7 +23,7 @@ Then create the following SQL views, EPSG is 4326 for all:
 
 This is the "route" view, with two parameters '''source''' and '''target''':
 
-SELECT
+```SELECT
 	MIN(a.seq) AS seq,  
         ST_Collect(b.geom),
         sum(b.distance) AS distance
@@ -32,7 +32,7 @@ SELECT
         pgr_dijkstra ('
                  SELECT gid as id, source, target, distance AS cost FROM edges', %source%, %target%,
             FALSE) 
-            a INNER JOIN edges b ON (a.edge = b.gid) ORDER BY seq
+            a INNER JOIN edges b ON (a.edge = b.gid) ORDER BY seq```
 
 Regular expression for validation is:
 ^[\w\d\s]+$
