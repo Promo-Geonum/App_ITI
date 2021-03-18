@@ -181,7 +181,7 @@ var TOUT = new L.geoJson(null, {
 });
 
 // Import of all the data from the GeoServer SQL view "tout" and adding to the layers constructors for filtering
-$.getJSON("http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3Atout&maxFeatures=1000&outputFormat=application%2Fjson",
+$.getJSON("http://localhost:8080/geoserver/ITI/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ITI%3Atout&maxFeatures=1000&outputFormat=application%2Fjson",
 	function(data) {
 		VTT.addData(data)
 		NAUT.addData(data)
@@ -257,7 +257,7 @@ mymap.getPane('overlayPane').style.zIndex = 630
 
 // Function to get nearest vertex to the passed point
 function getVertex(selectedPoint) {
-	var url = `http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3Anoeud&maxFeatures=50&outputFormat=application%2Fjson&viewparams=x:${
+	var url = `http://localhost:8080/geoserver/ITI/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ITI%3Anoeud&maxFeatures=50&outputFormat=application%2Fjson&viewparams=x:${
 		selectedPoint[0]
 	};y:${selectedPoint[1]};`;
 	$.ajax({
@@ -290,7 +290,7 @@ function loadVertex(response, typePoint) {
 // Add the GeoJSON to the layer pathLayer
 // Get the distance property in order to update the "info" window
 function getRoute(un, deux) {
-	var url = `http://localhost:8080/geoserver/projetgeonum/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=projetgeonum%3Achemin&maxFeatures=50&outputFormat=application%2Fjson&viewparams=source:${un};target:${deux};`;
+	var url = `http://localhost:8080/geoserver/ITI/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ITI%3Achemin&maxFeatures=50&outputFormat=application%2Fjson&viewparams=source:${un};target:${deux};`;
 	if (un == source_id) {
 		$.getJSON(url, function(data) {
 			AB_leaflet = L.geoJSON(data, {onEachFeature: routeFeature, style: routeStyle})
