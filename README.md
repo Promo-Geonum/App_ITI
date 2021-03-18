@@ -155,7 +155,7 @@ ILLUSTRATION
 * Info control displaying info on the routes, updated with each new routing
 * Button allowing the export of actual route to gpx using [togpx plugin](https://github.com/tyrasd/togpx)
 * Filter of equipments by sport with a layers control
-* A little (very french) joke is hidden in the map (and in the scripts), try to find it!
+* A (very french) joke is hidden in the map (and in the scripts), try to find it!
 
 ## Limits of ITI
 
