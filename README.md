@@ -146,11 +146,18 @@ saison_code, milieu_code and sport_code: `^[\w\d\s]+$`
 
 ## JavaScript
 
-All the JS files are well commented.
+All the JS files are well commented, but here is a schema explaining the functioning of button pages files and functions:
 
 ILLUSTRATION
 
 ## Map's features
+* Draggable departure and arrival markers, new routing with the new locations
+* Info control displaying info on the routes, updated with each new routing
+* Button allowing the export of actual route to gpx using [togpx plugin](https://github.com/tyrasd/togpx)
+* Filter of equipments by sport with a layers control
+* A little (very french) joke is hidden in the map (and in the scripts), try to find it!
 
 ## Limits of ITI
-graphe : chemins, pas de coût
+
+* Note that the road graph used does not include costs for road sections. Consequently, the routes can take any road (except motorways), including unmade roads not suitable for cycling.
+* The data used to gather the sports equipments ([BPE from INSEE](https://www.insee.fr/fr/metadonnees/source/serie/s1161)) does not include individual names, so the only thing that distinguishes two ski stations are their geom/coordinates.
