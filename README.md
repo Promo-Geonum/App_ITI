@@ -19,6 +19,7 @@ Launch GeoServer and connect a warehouse to the database containing the graph an
 
 Then create the following SQL views, EPSG is 4326 for all:
 
+
 ### chemin
 
 This is the "route" view, with two parameters `source` and `target`:
@@ -34,6 +35,7 @@ FROM
 ```
 
 Regular expression for validation is: `^[\w\d\s]+$`
+
 
 ### noeud
 
@@ -62,12 +64,14 @@ x: `7.14518`
 y: `43.99156`
 
 
+
 ### tout
 
 This view returns all the `sport_06` table:
 ```
 SELECT * FROM sport_06
 ```
+
 
 ### saison
 
@@ -86,6 +90,7 @@ dep: `7.14518 43.99156`
 
 arr: `7.342542 43.808902`
 
+
 ### milieu
 
 This view returns all the practice environments of features that comply with the 'saison' view and the saison chosen by the user, it has three parameters `dep`, `arr` and `saison_code`:
@@ -101,6 +106,7 @@ Regular expression for validation is:
 dep and arr: `^[.\w\d\s]+$`
 
 saison_code: `^[\w\d\s]+$`
+
 
 ### sport
 
@@ -118,6 +124,7 @@ Regular expression for validation is:
 dep and arr: `^[.\w\d\s]+$`
 
 saison_code and milieu_code: `^[\w\d\s]+$`
+
 
 ### etape
 
