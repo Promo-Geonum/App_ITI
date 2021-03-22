@@ -161,3 +161,4 @@ All the JS files are well commented, but here is a schema explaining the functio
 
 * Note that the road graph used does not include costs for road sections. Consequently, the routes can take any road (except motorways), including unmade roads not suitable for cycling.
 * The data used to gather the sports equipments ([BPE from INSEE](https://www.insee.fr/fr/metadonnees/source/serie/s1161)) does not include individual names, so the only thing that distinguishes two ski stations are their geom/coordinates.
+* [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) limitations need to be removed in order to the application to work well, either by enabling it in GeoServer settings, or by running the app in a local web server (Sublime Text or Visual Studio Code extensions, Python HTTPServer, etc.)
