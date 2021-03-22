@@ -4,10 +4,10 @@ function Brice() {
 		iconUrl: "../img/picto_sport/SURF.png",
 		iconSize: [25, 25]
 	})
-	Brice_marker = L.marker([43.69227, 7.29045], {icon: BriceIcon}).on("click", function(e) {
-		alert('T\'as cru que t\'allais pouvoir surfer à Nice ??')
-		window.open('https://www.youtube.com/watch?v=xEwfYR8ihEA', '_blank')
-	})
+	Brice_marker = L.marker([43.69227, 7.29045], {icon: BriceIcon})
+	.bindPopup('T\'as cru que t\'allais pouvoir surfer à Nice ?? <p><iframe width="560" height="315" src="https://www.youtube.com/embed/xEwfYR8ihEA?autoplay=1&controls=0&modestbranding=1;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>'
+		, {maxWidth: "auto"})
+	.openPopup()
 	Brice_marker.addTo(mymap)
 }
 
