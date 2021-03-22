@@ -148,7 +148,7 @@ saison_code, milieu_code and sport_code: `^[\w\d\s]+$`
 
 All the JS files are well commented, but here is a schema explaining the functioning of button pages files and functions:
 
-(archi_ITI_en.png)
+![archi_ITI_en](archi_ITI_en.png)
 
 ## Map's features
 * Draggable departure and arrival markers, new routing with the new locations
