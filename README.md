@@ -1,6 +1,6 @@
 # ITI, multisports routing application
 
-ITI is the result of a final year project of 4 students of the [GeoNum master's degree](https://mastergeonum.org/) (Lyon / Saint-Étienne, France).
+ITI is the result of a final year project of 4 students of the [GeoNum master's degree](https://mastergeonum.org/) (Lyon / Saint-Étienne, France): [Idrissa Djepa Creutz](https://github.com/IdrissaD), [Maodo Kante](), [Ashley Ouedraogo](http://linkedin.com/in/ashley-ouédraogo-9a3809185) and [Lubin Picard]().
 
 It is an application that allows the user to calculate a route through a sport activity chosen by him.
 
@@ -148,7 +148,7 @@ saison_code, milieu_code and sport_code: `^[\w\d\s]+$`
 
 All the JS files are well commented, but here is a schema explaining the functioning of button pages files and functions:
 
-ILLUSTRATION
+(archi_ITI_en.png)
 
 ## Map's features
 * Draggable departure and arrival markers, new routing with the new locations
