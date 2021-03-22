@@ -1,6 +1,6 @@
 # ITI, multisports routing application
 
-ITI is the result of a final year project of 4 students of the [GéoNum master's degree](https://mastergeonum.org/) (Lyon / Saint-Étienne, France): [Idrissa Djepa Creutz](https://github.com/IdrissaD), [Maodo Kante](https://twitter.com/KanteyeMaodo), [Ashley Ouedraogo](http://linkedin.com/in/ashley-ouédraogo-9a3809185) and [Lubin Picard](https://twitter.com/Lubin_Picard).
+ITI is the result of a final year project of 4 students of the [GéoNum master's degree](https://mastergeonum.org/) (Lyon / Saint-Étienne, France): [Idrissa Djepa Creutz](https://github.com/IdrissaD), [Maodo Kanteye](https://twitter.com/KanteyeMaodo), [Ashley Ouedraogo](http://linkedin.com/in/ashley-ouédraogo-9a3809185) and [Lubin Picard](https://twitter.com/Lubin_Picard).
 
 It is an application that allows the user to calculate a route through a sport activity chosen by him.
 
