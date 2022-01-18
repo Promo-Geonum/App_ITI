@@ -6,6 +6,12 @@ It is an application that allows the user to calculate a route through a sport a
 
 It works with a PostgreSQL database, connected to a GeoServer that interfaces with the JavaScript scripts.
 
+Watch the app's presentation video here:
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=SzVi9IS2SFY" target="_blank">
+ <img src="youtube_preview.png" alt="Watch the app's presentation video here:" width="700" />
+</a>
+
 ## Database
 
 To install the application, the `BD.sql` database must be downloaded and imported into a PostgreSQL database (for example via the "restore" option of PgAdmin).
